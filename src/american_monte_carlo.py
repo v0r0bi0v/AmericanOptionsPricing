@@ -56,7 +56,7 @@ class AmericanMonteCarlo:
                 continuation_value = np.ones(self.sampler.cnt_trajectories) * np.mean(self.option_price)
                 in_the_money_indices = np.arange(self.sampler.cnt_trajectories, dtype=int)
             else:
-                in_the_money_indices = np.where(discounted_payoff[:, time_index] > 1e-9)[0]
+                in_the_money_indices = np.where(discounted_payoff[:, time_index] > 1e-9)[0]  # why?
                 if (len(in_the_money_indices) / self.sampler.cnt_trajectories < 1e-3 or
                         len(in_the_money_indices) < 2 or test and weights[time_index] is None):
                     self.price_history[time_index] = self.option_price.mean()

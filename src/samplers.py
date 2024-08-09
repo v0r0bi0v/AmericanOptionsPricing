@@ -1,6 +1,6 @@
 import numpy as np
 from abc import abstractmethod
-from plotting_utils import plot_trajectories
+from src.plotting_utils import plot_trajectories
 from tqdm import tqdm_notebook as tqdm
 import warnings
 
@@ -91,6 +91,7 @@ class GeometricBrownianMotionPutSampler(AbstractSampler):
         self.strike = kwargs.get("strike")
         self.mu = kwargs.get("mu")
         self.asset0 = kwargs.get("asset0")
+        self.t = kwargs.get('t', 1)  # Make sure 't' is initialized
 
     def sample(self) -> None:
         normals = self.random_state.normal(0, 1, (self.cnt_trajectories, self.cnt_times - 1))
